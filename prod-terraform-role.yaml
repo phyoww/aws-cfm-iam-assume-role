@@ -1,0 +1,25 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  prodTerraformRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: "prod-terraform-role"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AdministratorAccess" #gui policy > AdministratorAccess ARN
+        - "arn:aws:iam::aws:policy/job-function/DatabaseAdministrator"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS:
+                - "arn:aws:iam::xxxxxxxxxxxx:root" #cloudideastar-master
+                # - 'arn:aws:iam::AWS-account-ID:user/user-name-1'
+                # - 'arn:aws:iam::AWS-account-ID:user/user-name-2'
+            Action:
+              - "sts:AssumeRole"
+      MaxSessionDuration: 7200 # default 3600 seconds = 1 hour
+Outputs:
+  prodTerraformRoleARN:
+    Description: prod-terraform-role ARN
+    Value: !GetAtt prodTerraformRole.Arn

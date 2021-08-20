@@ -1,0 +1,19 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  masTerUser:
+    Type: AWS::IAM::User
+    Properties:
+      UserName: "masTerUser"
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AdministratorAccess" #gui policy > AdministratorAccess ARN
+  AccessKeyFormasTerUser: # accesskey for masTerUser
+    Type: AWS::IAM::AccessKey
+    Properties:
+      UserName: !Ref masTerUser
+Outputs:
+  AccessKeyFormasTerUser:
+    Description: AWSAccessKeyId of masTerUser
+    Value: !Ref AccessKeyFormasTerUser
+  SecretKeyFormasTerUser:
+    Description: AWSSecretKey of masTerUser
+    Value: !GetAtt AccessKeyFormasTerUser.SecretAccessKey
