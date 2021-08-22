@@ -23,7 +23,7 @@ aws cloudformation create-stack --stack-name prod-terraform-role --template-body
 ```
 
 ## Test
-# 1. Log in to aws master account test switch role
+# 1. Log in to aws master account test switch role (update code soon)
 # 2.aws iam list-roles --profile cloudideastar-dev
 # 3.aws iam list-roles --profile cloudideastar-prod
 
