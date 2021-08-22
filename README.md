@@ -16,6 +16,7 @@ aws cloudformation create-stack --stack-name dev-terraform-role --template-body 
 ```
 
 ## 3.Create at prod aws account for prod assume role with administrator access then trusted the master aws account
+- [prod-terraform-role.yaml](./prod-terraform-role.yaml)
 
 ```bash
 aws cloudformation create-stack --stack-name prod-terraform-role --template-body file://prod-terraform-role.yaml --profile cloudideastar-prod --region ap-southeast-1 --capabilities CAPABILITY_NAMED_IAM
